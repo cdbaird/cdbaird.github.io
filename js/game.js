@@ -6,8 +6,10 @@ window.onload=function() {
 }
 px=py=10;
 xv=yv=0;
-gs=tc=20;
+gs=tc=25;
 ax=ay=15;
+trail = [];
+tail = 5;
 function game() {
 	px+=xv;
 	py+=yv;
@@ -15,19 +17,36 @@ function game() {
 		px = tc-1;
 	}
 	if(px>tc-1){
-		px=0;
+		px = 0;
 	}
 	if(py<0){
 		py = tc-1;
 	}
 	if(py>tc-1){
-		py=0;
+		py = 0;
 	}
-	ctx.fillstyle="black";
+	ctx.fillStyle="black";
 	ctx.fillRect(0,0,canv.width, canv.height);
 
-	ctx.fillstyle="red";
-	ctx.fillRect(ax*gs, ay*gs, gs-2, gs-2)
+	ctx.fillStyle="red";
+	ctx.fillRect(ax*gs, ay*gs, gs-2, gs-2);
+
+	ctx.fillStyle="lime";
+	for(var i=0; i<trail.length; i++) {
+		ctx.fillRect(trail[i].x*gs, trail[i].y*gs, gs-2, gs-2);
+		if(trail[i].x == px && trail[i].y == py) {
+			tail = 5;
+		}
+	}
+	trail.push({x:px, y:py});
+	while(trail.length > tail) {
+		trail.shift();
+	}
+	if(px == ax && py == ay) {
+		tail++;
+		ax = Math.floor(Math.random()*tc);
+		ay = Math.floor(Math.random()*tc);
+	}
 }
 function keyPush(evt) {
 	switch(evt.keyCode) {
@@ -35,7 +54,7 @@ function keyPush(evt) {
 			xv=-1;yv=0;
 			break;
 		case 38:
-			xv=;yv=-1;
+			xv=0;yv=-1;
 			break;
 		case 39:
 			xv=1;yv=0;
