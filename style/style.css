@@ -1,0 +1,18 @@
+h1 {
+	color: red;
+}
+
+.container  {
+	position: relative;
+}
+.instructions {
+	position: absolute;
+	top: 25%;
+	right: 0%;
+}
+
+#gc {
+	position: absolute;
+	top: 0;
+	left: 15%;
+}
