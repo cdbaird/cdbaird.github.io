@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: cdbaird.github.io
+Token: bf91bf78a2d6a0cf28185d5598a1996bacabd97b9511220053e03c2b9761ef9b
